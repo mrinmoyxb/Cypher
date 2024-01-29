@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             GeminiChatTheme {
-
+                //val key = BuildConfig.API_KEY
             }
         }
     }
