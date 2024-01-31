@@ -1,5 +1,5 @@
 
-# Cypher
+# Cypher -> Work in Progress
 Cypher, an Android application built using Kotlin and Jetpack Compose that uses Gemini API from Google, to generate results based on the provided prompts.
 
 
