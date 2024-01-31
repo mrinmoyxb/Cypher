@@ -7,4 +7,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="blue_1">#FF03045E</color>
+    <color name="blue_2">#FF023E8A</color>
+    <color name="blue_3">#FF0077B6</color>
+    <color name="blue_4">#FF023E8A</color>
+    <color name="blue_6">#FFCAF0F8</color>
+
+    <color name="gemini_blue">#FF389CFF</color>
+    <color name="gemini_yellow">#FFEDEDD3</color>
+    <color name="gemini_white">#FFF8F9FD</color>
+    <color name="gemini_purple">#FFBEC7EE</color>
 </resources>
