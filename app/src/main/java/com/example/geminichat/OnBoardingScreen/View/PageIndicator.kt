@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -29,9 +30,18 @@ fun PageIndicator(
     ){
         // number of indicator based on number of pages
         repeat(pageSize){page->
-            Box(modifier = Modifier.size(14.dp).clip(CircleShape)
-                .background(color = if(page==selectedPage) selectedColor else unselectedColor))
+            Box(modifier = Modifier
+                .size(14.dp)
+                .clip(CircleShape)
+                .background(color = if (page == selectedPage) selectedColor else unselectedColor))
             Spacer(modifier = Modifier.width(5.dp))
         }
     }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun DisplayPageIndicator(){
+    PageIndicator(pageSize = 3, selectedPage = 1)
 }

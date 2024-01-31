@@ -45,9 +45,10 @@ import com.example.geminichat.ui.theme.montserrat
 fun OnBoardingPage(pages: OnBoardingData, modifier: Modifier = Modifier){
     Column(
         modifier =  modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy((-60).dp)
+        verticalArrangement = Arrangement.spacedBy((-70).dp)
     ){
         Box(
+            modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center
         ){
             Image(painter = painterResource(id = pages.image), contentDescription = "On Boarding Page")
@@ -80,7 +81,7 @@ fun OnBoardingPage(pages: OnBoardingData, modifier: Modifier = Modifier){
                     text = pages.description,
                     fontFamily = montserrat,
                     fontWeight = FontWeight.Medium,
-                    color = Color(0xFFA89A9A),
+                    color = Color(0xFF615555),
                     fontSize = 18.sp,
                     textAlign = TextAlign.Center
                 )
@@ -90,17 +91,5 @@ fun OnBoardingPage(pages: OnBoardingData, modifier: Modifier = Modifier){
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DisplayScreen1(){
-    //OnBoardingPage(pages = pages[1])
-    OnBoardingScreen()
-}
 
-
-//@Preview(showBackground = true)
-//@Composable
-//fun DisplayScreen2(){
-//    OnBoardingPage(pages = pages[1])
-//}
 

@@ -23,8 +23,8 @@ val pages = listOf(
     ),
 
     OnBoardingData(
-        image = R.drawable.p1,
-        heading = "What Story Will You Tell Today? Explore the Endless Possibilities",
+        image = R.drawable.p3,
+        heading = "What Story Will You Tell Today?",
         description = "A universe of words awaits. Dive into the world of prompts and discover the creative magic Cypher unlocks within you"
     ),
 )

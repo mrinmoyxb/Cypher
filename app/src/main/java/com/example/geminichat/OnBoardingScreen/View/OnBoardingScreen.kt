@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -27,8 +28,9 @@ import kotlinx.coroutines.launch
 @Composable
 fun OnBoardingScreen(){
     Column(modifier = Modifier.fillMaxSize()){
+
         val pagerState = rememberPagerState()
-        
+
         val buttonState = remember{
             derivedStateOf { 
                 when(pagerState.currentPage){
@@ -39,8 +41,9 @@ fun OnBoardingScreen(){
                 }
             }
         }
+
         Box(
-            modifier = Modifier.fillMaxHeight(0.8f).fillMaxWidth()
+            modifier = Modifier.fillMaxHeight(0.88f).fillMaxWidth()
         ) {
 
             HorizontalPager(pageCount = 3, state = pagerState) { index ->
@@ -49,8 +52,7 @@ fun OnBoardingScreen(){
         }
 
         Row(modifier = Modifier
-            .fillMaxWidth()
-            .navigationBarsPadding(),
+            .fillMaxWidth().padding(start = 30.dp, end = 30.dp).navigationBarsPadding(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
             ){
@@ -67,12 +69,12 @@ fun OnBoardingScreen(){
                     ChatTextButton(text = buttonState.value[0],
                         onClick = {
                             scope.launch{
-                                pagerState.animateScrollToPage(page = pagerState.currentPage)
+                                pagerState.animateScrollToPage(page = pagerState.currentPage-1)
                             }
                         }
                     )
                 }
-                ChatTextButton(text = buttonState.value[1],
+                ChatButton(text = buttonState.value[1],
                     onClick = {
                         scope.launch{
                             if(pagerState.currentPage == 3){
@@ -93,6 +95,8 @@ fun OnBoardingScreen(){
 
     }
 }
+
+
 
 
 @Preview(showBackground = true)
