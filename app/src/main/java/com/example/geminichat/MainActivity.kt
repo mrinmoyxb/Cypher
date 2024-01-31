@@ -10,6 +10,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.geminichat.OnBoardingScreen.Data.pages
+import com.example.geminichat.OnBoardingScreen.View.OnBoardingPage
+import com.example.geminichat.OnBoardingScreen.View.OnBoardingScreen
 import com.example.geminichat.ui.theme.GeminiChatTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,6 +21,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             GeminiChatTheme {
                 //val key = BuildConfig.API_KEY
+                //OnBoardingScreen()
+                OnBoardingPage(pages = pages[1])
             }
         }
     }

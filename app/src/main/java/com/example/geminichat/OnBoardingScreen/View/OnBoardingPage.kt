@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -42,9 +43,6 @@ import com.example.geminichat.ui.theme.montserrat
 @SuppressLint("ResourceAsColor")
 @Composable
 fun OnBoardingPage(pages: OnBoardingData, modifier: Modifier = Modifier){
-
-    val gradientColor1 = listOf(Color(0xFF03045e), Color(0xFF72efdd))
-    val gradientColor2 = listOf(Color(0xFF03045e), Color(0xFF6d89df))
     Column(
         modifier =  modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy((-60).dp)
@@ -58,15 +56,13 @@ fun OnBoardingPage(pages: OnBoardingData, modifier: Modifier = Modifier){
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxWidth()
                 .clip(RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)),
-                //.background(Brush.linearGradient(colors = gradientColor2)),
             colors = CardDefaults.cardColors(Color.White)
         ){
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 40.dp, start = 30.dp, end = 30.dp)
+                    .padding(top = 30.dp, start = 30.dp, end = 30.dp)
             ){
                 Text(
                     text = pages.heading,
@@ -74,7 +70,8 @@ fun OnBoardingPage(pages: OnBoardingData, modifier: Modifier = Modifier){
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                     fontSize = 30.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    style = TextStyle(lineHeight = 35.sp)
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -96,7 +93,8 @@ fun OnBoardingPage(pages: OnBoardingData, modifier: Modifier = Modifier){
 @Preview(showBackground = true)
 @Composable
 fun DisplayScreen1(){
-    OnBoardingPage(pages = pages[0])
+    //OnBoardingPage(pages = pages[1])
+    OnBoardingScreen()
 }
 
 
