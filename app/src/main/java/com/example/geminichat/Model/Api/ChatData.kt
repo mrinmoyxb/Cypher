@@ -29,7 +29,7 @@ object ChatData {
                 bitmap = null,
                 isFromUser = false
             )
-        } catch(e: ResponseStoppedException){
+        } catch(e: Exception){
             return ChatClass(
                 prompt = e.message?:"error",
                 bitmap = null,
@@ -58,7 +58,7 @@ object ChatData {
                 bitmap = null,
                 isFromUser = false
             )
-        } catch(e: ResponseStoppedException){
+        } catch(e: Exception){
             return ChatClass(
                 prompt = e.message?:"error",
                 bitmap = null,
