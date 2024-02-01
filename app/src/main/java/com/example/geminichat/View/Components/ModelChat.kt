@@ -28,50 +28,29 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.geminichat.ui.theme.montserrat
 
+
 @Composable
 fun ModelChat(prompt: String){
+    val g = listOf(Color(0xFF4361ee), Color(0xFF64b5f6), Color(0xFFe3f2fd))
+    val c1: Brush = Brush.linearGradient(g)
+
     Column(
         modifier = Modifier.padding(end = 100.dp, bottom = 22.dp)
     ){
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(12.dp))
-                .background(Color.White)
-                .padding(),
-            text = prompt,
-            fontSize = 18.sp,
-            color = Color.Black
-        )
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun Default(){
-    val l1 = listOf(Color(0xFF34a0a4), Color(0xFFb5e48c))
-    val l2 = listOf(Color(0xFF03045e), Color(0xFFcaf0f8))
-    val l3 = listOf(Color(0xFF4361ee), Color(0xFF64b5f6), Color(0xFFe3f2fd))
-    val l4 = listOf(Color(0xFF4ea8de), /*Color(0xFF80ffdb)*/ Color(0xFFe3f2fd))
-
-    val c1: Brush = Brush.linearGradient(l3)
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
         Card(
-            modifier = Modifier.height(100.dp).width(250.dp).background(Color.Transparent),
-            shape = RoundedCornerShape(20.dp)
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(12.dp)
         ){
             Box(
-                modifier = Modifier.fillMaxSize().background(c1)
+                modifier = Modifier.background(c1).fillMaxWidth()
             ){
-                Text("hello world, demo test", fontSize = 18.sp, fontFamily= montserrat, fontWeight = FontWeight.SemiBold,
-                    color = Color.Black, modifier = Modifier.padding(8.dp))
+                Text(prompt,
+                    fontSize = 18.sp,
+                    fontFamily= montserrat,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.Black,
+                    modifier = Modifier.padding(8.dp)
+                )
             }
         }
     }
