@@ -9,9 +9,10 @@ import com.google.ai.client.generativeai.type.ResponseStoppedException
 import com.google.ai.client.generativeai.type.content
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import com.example.geminichat.BuildConfig.API_KEY
 
 object ChatData {
-    val key = com.example.geminichat.BuildConfig.API_KEY
+    const val key = API_KEY
 
     //prompt from user -> text prompt
     suspend fun getResponse(prompt: String): ChatClass {

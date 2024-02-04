@@ -13,6 +13,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -96,8 +98,7 @@ class MainActivity : ComponentActivity() {
             GeminiChatTheme {
                 //OnBoardingScreen()
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = colorResource(id = R.color.black)
+                    modifier = Modifier.fillMaxSize()
                 ) {
                     Scaffold(
                         topBar = { TopAppBarComponent(text = "Cypher") }
@@ -119,7 +120,8 @@ class MainActivity : ComponentActivity() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = paddingValues.calculateTopPadding()),
+                .padding(top = paddingValues.calculateTopPadding())
+                .background(color = colorResource(id = R.color.black)),
             verticalArrangement = Arrangement.Bottom
         ) {
             LazyColumn(
@@ -141,17 +143,17 @@ class MainActivity : ComponentActivity() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 16.dp, start = 4.dp, end = 4.dp),
+                    .padding(start = 4.dp, end = 4.dp).navigationBarsPadding(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Column {
                     bitmap?.let {
                         Image(
-                            contentDescription = "image",
                             modifier = Modifier
                                 .size(40.dp)
                                 .padding(bottom = 2.dp)
                                 .clip(RoundedCornerShape(6.dp)),
+                            contentDescription = "image",
                             contentScale = ContentScale.Crop,
                             bitmap = it.asImageBitmap()
                         )
@@ -175,6 +177,7 @@ class MainActivity : ComponentActivity() {
                 Spacer(modifier = Modifier.width(8.dp))
 
                 TextField(value = chatState.prompt,
+                    modifier = Modifier.weight(1f),
                     onValueChange = {
                         chaViewModel.onEvent(UIEvents.UpdatePrompt(it))
                     },
