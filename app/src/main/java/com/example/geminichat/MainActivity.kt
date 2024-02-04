@@ -59,7 +59,6 @@ import coil.size.Size
 import com.example.geminichat.Model.UIData.UIEvents
 import com.example.geminichat.OnBoardingScreen.Data.pages
 import com.example.geminichat.OnBoardingScreen.View.OnBoardingPage
-import com.example.geminichat.View.Components.ChatScreen
 import com.example.geminichat.View.Components.ModelChat
 import com.example.geminichat.View.Components.TopAppBarComponent
 import com.example.geminichat.View.Components.UserChat
@@ -108,93 +107,96 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
 
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun ChatScreen(paddingValues: PaddingValues) {
+        val chaViewModel = viewModel<ChatViewModel>()
+        val chatState = chaViewModel.chatState.collectAsState().value
+        val bitmap = getBitmap()
 
-        @Composable
-        fun ChatScreen(paddingValues: PaddingValues) {
-            val chaViewModel = viewModel<ChatViewModel>()
-            val chatState = chaViewModel.chatState.collectAsState().value
-            val bitmap = getBitmap()
-
-            Column(
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = paddingValues.calculateTopPadding()),
+            verticalArrangement = Arrangement.Bottom
+        ) {
+            LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(top = paddingValues.calculateTopPadding()),
-                verticalArrangement = Arrangement.Bottom
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp),
+                reverseLayout = true // messages are below after prompt
             ) {
-                LazyColumn(
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
-                    reverseLayout = true // messages are below after prompt
-                ) {
-                    itemsIndexed(chatState.chatList) { index, chat ->
-                        if (chat.isFromUser) {
-                            UserChat(prompt = chat.prompt, bitmap = chat.bitmap!!)
-                        } else {
-                            ModelChat(response = chat.prompt)
-                        }
+                itemsIndexed(chatState.chatList) { index, chat ->
+                    if (chat.isFromUser) {
+                        UserChat(prompt = chat.prompt, bitmap = chat.bitmap!!)
+                    } else {
+                        ModelChat(response = chat.prompt)
                     }
                 }
+            }
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Column {
-                        bitmap?.let {
-                            Image(
-                                contentDescription = "image",
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(260.dp)
-                                    .padding(bottom = 2.dp)
-                                    .clip(RoundedCornerShape(12.dp)),
-                                contentScale = ContentScale.Crop,
-                                bitmap = it.asImageBitmap()
-                            )
-                        }
-                        Icon(
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp, start = 4.dp, end = 4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column {
+                    bitmap?.let {
+                        Image(
+                            contentDescription = "image",
                             modifier = Modifier
                                 .size(40.dp)
-                                .clickable {
-                                    imagePicker.launch(
-                                        PickVisualMediaRequest
-                                            .Builder()
-                                            .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly)
-                                            .build()
-                                    )
-                                },
-                            imageVector = Icons.Rounded.Image, contentDescription = "image icon",
-                            tint = colorResource(id = R.color.white)
+                                .padding(bottom = 2.dp)
+                                .clip(RoundedCornerShape(6.dp)),
+                            contentScale = ContentScale.Crop,
+                            bitmap = it.asImageBitmap()
                         )
                     }
-                    Spacer(modifier = Modifier.width(8.dp))
-
-                    TextField(value = chatState.prompt, onValueChange = {
-                        chaViewModel.onEvent(UIEvents.UpdatePrompt(it))
-                    },
-                        placeholder = {
-                            Text(text="Type a prompt")
-                        }
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
                     Icon(
                         modifier = Modifier
                             .size(40.dp)
                             .clickable {
-                                chaViewModel.onEvent(UIEvents.SendPrompt(chatState.prompt, bitmap))
+                                imagePicker.launch(
+                                    PickVisualMediaRequest
+                                        .Builder()
+                                        .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                                        .build()
+                                )
                             },
-                        imageVector = Icons.Rounded.Done, contentDescription = "send prompt",
+                        imageVector = Icons.Rounded.Image,
+                        contentDescription = "image icon",
                         tint = colorResource(id = R.color.white)
                     )
                 }
+                Spacer(modifier = Modifier.width(8.dp))
+
+                TextField(value = chatState.prompt,
+                    onValueChange = {
+                        chaViewModel.onEvent(UIEvents.UpdatePrompt(it))
+                    },
+                    placeholder = {
+                        Text(text = "Type a prompt")
+                    }
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Icon(
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clickable {
+                            chaViewModel.onEvent(UIEvents.SendPrompt(chatState.prompt, bitmap))
+                            uriState.update { "" }
+                        },
+                    imageVector = Icons.Rounded.Done, contentDescription = "send prompt",
+                    tint = colorResource(id = R.color.white)
+                )
             }
         }
     }
+
     @Composable
     fun getBitmap(): Bitmap? {
         val uri = uriState.collectAsState().value
@@ -205,7 +207,7 @@ class MainActivity : ComponentActivity() {
                 .build()
         ).state
 
-        if(imageState is AsyncImagePainter.State.Success){
+        if (imageState is AsyncImagePainter.State.Success) {
             return imageState.result.drawable.toBitmap()
         }
         return null

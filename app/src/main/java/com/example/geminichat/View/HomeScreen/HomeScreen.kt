@@ -16,10 +16,7 @@ import kotlinx.coroutines.flow.update
 @Composable
 fun HomeScreen(){
 
-//    val chaViewModel = viewModel<ChatViewModel>()
-//    val chatState = chaViewModel.chatState.collectAsState().value
 
-    //val bitmap = getBimap()
 
 }
 
