@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.example.geminichat.ui.theme.montserrat
 
 @Composable
-fun UserChat(prompt: String, bitmap: Bitmap){
+fun UserChat(prompt: String, bitmap: Bitmap?){
     Column(
         modifier = Modifier.padding(start = 100.dp, bottom = 22.dp)
     ){

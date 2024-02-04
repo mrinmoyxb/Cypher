@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.geminichat.Model.Api.ChatData
+import com.example.geminichat.Model.Api.ChatData.getResponseWithImage
 import com.example.geminichat.Model.Data.ChatClass
 import com.example.geminichat.Model.UIData.ChatState
 import com.example.geminichat.Model.UIData.UIEvents
@@ -25,7 +26,7 @@ class ChatViewModel: ViewModel(){
                 if(event.prompt.isNotEmpty()){
                     addPrompt(event.prompt, event.bitmap)
                     if(event.bitmap != null){
-                        getResponseWithBitmap(event.prompt, event.bitmap)
+                        getResponseWithImage(event.prompt, event.bitmap)
                     }
                     else{
                         getResponse(event.prompt)
@@ -65,7 +66,7 @@ class ChatViewModel: ViewModel(){
         }
     }
 
-    private fun getResponseWithBitmap(prompt: String, bitmap: Bitmap){
+    private fun  getResponseWithImage(prompt: String, bitmap: Bitmap){
         viewModelScope.launch{
             val chat = ChatData.getResponseWithImage(prompt, bitmap)
             _chatState.update {

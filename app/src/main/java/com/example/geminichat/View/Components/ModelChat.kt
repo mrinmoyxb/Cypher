@@ -31,15 +31,16 @@ import com.example.geminichat.ui.theme.montserrat
 
 @Composable
 fun ModelChat(response: String){
-    val g = listOf(Color(0xFF4361ee), Color(0xFF64b5f6), Color(0xFFe3f2fd))
+
+    val g = listOf(Color(0xFF5f78f0), Color(0xFF64b5f6), Color(0xFFe3f2fd))
     val c1: Brush = Brush.linearGradient(g)
 
     Column(
-        modifier = Modifier.padding(end = 100.dp, bottom = 22.dp)
+        modifier = Modifier.padding(end = 80.dp, bottom = 22.dp)
     ){
         Card(
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(22.dp)
         ){
             Box(
                 modifier = Modifier.background(c1).fillMaxWidth()

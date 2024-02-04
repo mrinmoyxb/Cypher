@@ -133,7 +133,7 @@ class MainActivity : ComponentActivity() {
             ) {
                 itemsIndexed(chatState.chatList) { index, chat ->
                     if (chat.isFromUser) {
-                        UserChat(prompt = chat.prompt, bitmap = chat.bitmap!!)
+                        UserChat(prompt = chat.prompt, bitmap = chat.bitmap)
                     } else {
                         ModelChat(response = chat.prompt)
                     }
@@ -193,7 +193,7 @@ class MainActivity : ComponentActivity() {
                             chaViewModel.onEvent(UIEvents.SendPrompt(chatState.prompt, bitmap))
                             uriState.update { "" }
                         },
-                    imageVector = Icons.Rounded.Done, contentDescription = "send prompt",
+                    imageVector = Icons.Rounded.Send, contentDescription = "send prompt",
                     tint = colorResource(id = R.color.white)
                 )
             }
