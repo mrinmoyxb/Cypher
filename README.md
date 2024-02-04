@@ -30,7 +30,10 @@ The Vertex AI Gemini API supports the following use cases by model:
 
 ![cypher_onboarding](https://github.com/mrinmoyxb/Cypher/assets/141025752/14f8b2cd-6e49-4924-a840-b614122efce6)
 
-**`Home Screen:`**
+**`Home Screens:`**
+
+![cypher_mainScreen](https://github.com/mrinmoyxb/Cypher/assets/141025752/f8801d9b-d9b8-4f99-a87e-d70c8bac525d)
+
 ## About Application:
 
 **`Gemini Pro`**
