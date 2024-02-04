@@ -1,5 +1,5 @@
 
-# Cypher -> Work in Progress
+# Cypher 
 Cypher, an Android application built using Kotlin and Jetpack Compose that uses Gemini API from Google, to generate results based on the provided prompts.
 
 
@@ -15,6 +15,11 @@ Gemini comes in three sizes, catering to different needs:
 Gemini represents a significant stride towards more versatile and impactful AI. Its multimodal capabilities pave the way for richer, more intuitive human-computer interactions and open doors to countless potential applications in various fields like education, healthcare, and artistic expression.
 
 ![gemini1](https://github.com/mrinmoyxb/Cypher/assets/141025752/bfa3dca3-1281-401a-8d4e-e3886e7d43e0)
+
+The Vertex AI Gemini API supports the following use cases by model:
+
+* **`Gemini Pro:`** Designed to handle natural language tasks, multiturn text and code chat, and code generation.
+* **`Gemini Pro Vision:`** Supports multimodal prompts. You can include text, images, and video in your prompt requests and get text or code responses.
 
 **Hence, the main objective of this project is to built an Android application, through which we can easily access and utilize the capabilities provided by the Gemini through it's API.**
 
