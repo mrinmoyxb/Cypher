@@ -30,7 +30,7 @@ import com.example.geminichat.ui.theme.montserrat
 
 
 @Composable
-fun ModelChat(prompt: String){
+fun ModelChat(response: String){
     val g = listOf(Color(0xFF4361ee), Color(0xFF64b5f6), Color(0xFFe3f2fd))
     val c1: Brush = Brush.linearGradient(g)
 
@@ -44,7 +44,7 @@ fun ModelChat(prompt: String){
             Box(
                 modifier = Modifier.background(c1).fillMaxWidth()
             ){
-                Text(prompt,
+                Text(response,
                     fontSize = 18.sp,
                     fontFamily= montserrat,
                     fontWeight = FontWeight.SemiBold,
