@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.example.geminichat.BuildConfig.API_KEY
 
+
 object ChatData {
     const val key = API_KEY
 
@@ -51,7 +52,7 @@ object ChatData {
                 text(prompt)
             }
             val response = withContext(Dispatchers.IO){
-                generativeModel.generateContent(prompt)
+                generativeModel.generateContent(inputContent)
             }
 
             return ChatClass(
