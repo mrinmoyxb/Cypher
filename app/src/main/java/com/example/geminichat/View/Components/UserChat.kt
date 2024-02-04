@@ -32,7 +32,7 @@ fun UserChat(prompt: String, bitmap: Bitmap?){
                     .fillMaxWidth()
                     .height(260.dp)
                     .padding(bottom = 2.dp)
-                    .clip(RoundedCornerShape(12.dp)),
+                    .clip(RoundedCornerShape(22.dp)),
                 contentScale = ContentScale.Crop,
                 bitmap = it.asImageBitmap()
                 )

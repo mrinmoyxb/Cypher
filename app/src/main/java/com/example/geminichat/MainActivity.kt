@@ -30,6 +30,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Done
 import androidx.compose.material.icons.rounded.Image
@@ -41,6 +42,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -50,6 +52,11 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
@@ -66,6 +73,7 @@ import com.example.geminichat.View.Components.TopAppBarComponent
 import com.example.geminichat.View.Components.UserChat
 import com.example.geminichat.ViewModel.ChatViewModel
 import com.example.geminichat.ui.theme.GeminiChatTheme
+import com.example.geminichat.ui.theme.montserrat
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
@@ -143,7 +151,8 @@ class MainActivity : ComponentActivity() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 4.dp, end = 4.dp).navigationBarsPadding(),
+                    .padding(start = 4.dp, end = 4.dp)
+                    .navigationBarsPadding(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Column {
@@ -178,11 +187,22 @@ class MainActivity : ComponentActivity() {
 
                 TextField(value = chatState.prompt,
                     modifier = Modifier.weight(1f),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = TextFieldDefaults.textFieldColors(
+                        containerColor = androidx.compose.ui.graphics.Color.White,
+                        cursorColor = androidx.compose.ui.graphics.Color.White,
+                        focusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent,
+                        unfocusedIndicatorColor = androidx.compose.ui.graphics.Color.Transparent),
+                    keyboardOptions = KeyboardOptions(
+                        KeyboardCapitalization.None,
+                        autoCorrect = true,
+                        imeAction = ImeAction.Send
+                    ),
                     onValueChange = {
                         chaViewModel.onEvent(UIEvents.UpdatePrompt(it))
                     },
                     placeholder = {
-                        Text(text = "Type a prompt")
+                        Text(text = "Type a prompt", color = colorResource(id = R.color.black), fontFamily = montserrat, fontWeight = FontWeight.SemiBold)
                     }
                 )
                 Spacer(modifier = Modifier.width(8.dp))
